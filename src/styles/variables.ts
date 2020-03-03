@@ -2,10 +2,16 @@ export const colors = {
   text: {
     default: '#000000',
   },
+  ui: {
+    default: '#2285ea',
+    dark: '#0061b4',
+  },
+  white: '#ffffff',
 };
 
 export const fonts = {
-  default: 'museo-sans, Arial, sans-serif',
+  default: 'Roboto, sans-serif',
+  header: 'Oswald, sans-serif',
 };
 
 export const breakpoints = {
@@ -28,6 +34,7 @@ export const dimensions = {
     regular: 1.3,
     heading: 1.2,
   },
+  wrapper: 1200,
 };
 
 export const animation = {

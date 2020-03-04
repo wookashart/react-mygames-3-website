@@ -1,6 +1,7 @@
 export const colors = {
   text: {
     default: '#000000',
+    error: '#ff124c',
   },
   ui: {
     default: '#2285ea',

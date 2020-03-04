@@ -1,15 +1,48 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const express = require('express');
 const next = require('next');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+// Endpoints modules
+const apiLogin = require('./backend/authentication/login');
+const apiMe = require('./backend/authentication/me');
+const apiLogout = require('./backend/authentication/logout');
+
 app
   .prepare()
   .then(() => {
     const server = express();
+
+    server.use(bodyParser.json({ limit: '50mb' }));
+    server.use(bodyParser.urlencoded({ limit: '50mb' }));
+    server.use(bodyParser.json());
+    server.use(
+      bodyParser.urlencoded({
+        extended: true,
+      }),
+    );
+    server.use(cookieParser());
+    server.use(
+      session({
+        key: 'user_sid',
+        secret: 'random',
+        resave: false,
+        saveUninitialized: true,
+        cookie: {
+          httpOnly: false,
+        },
+      }),
+    );
+
+    server.post('/api/login', apiLogin);
+    server.post('/api/me', apiMe);
+    server.post('/api/logout', apiLogout);
 
     server.get('*', (req, res) => {
       return handle(req, res);

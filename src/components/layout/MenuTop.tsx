@@ -5,27 +5,38 @@ import Link from 'next/link';
 
 // Helpers
 import { colors, animation } from '../../styles/variables';
+import { UserData } from '../../content/types/user';
 
 // Components
 import Wrapper from '../common/Wrapper';
 
-const MenuTop = () => {
+interface MenuTopProps {
+  onLoginOpened: Function;
+  onUserLogout: Function;
+  userData: UserData;
+}
+
+const MenuTop = ({ onLoginOpened, userData, onUserLogout }: MenuTopProps) => {
   return (
     <>
       <Wrapper>
         <div>
-          <ul>
-            <li>
-              <Link href="#">
-                <a>Logowanie</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/register">
-                <a>Rejestracja</a>
-              </Link>
-            </li>
-          </ul>
+          {!userData ? (
+            <ul>
+              <li>
+                <Link href="#">
+                  <a onClick={e => onLoginOpened(e)}>Logowanie</a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/register">
+                  <a>Rejestracja</a>
+                </Link>
+              </li>
+            </ul>
+          ) : (
+            <div onClick={() => onUserLogout()}>{userData.login}</div>
+          )}
         </div>
       </Wrapper>
       <style jsx>{`

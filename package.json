@@ -23,11 +23,19 @@
   "dependencies": {
     "@types/node": "^13.7.6",
     "@types/react": "^16.9.23",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "formik": "^2.1.4",
+    "js-cookie": "^2.2.1",
+    "mysql": "^2.18.1",
     "next": "^9.2.2",
+    "password-hash": "^1.2.2",
     "path": "^0.12.7",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "yup": "^0.28.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.21.0",

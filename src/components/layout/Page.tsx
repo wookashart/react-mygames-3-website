@@ -77,7 +77,8 @@ class Page extends Component<PageProps> {
       });
   };
 
-  onUserLogout = () => {
+  onUserLogout = e => {
+    e.preventDefault();
     this.setState({
       userData: null,
     });

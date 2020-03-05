@@ -9,6 +9,7 @@ import { UserData } from '../../content/types/user';
 
 // Components
 import Wrapper from '../common/Wrapper';
+import MenuTopLogged from './MenuTopLogged';
 
 interface MenuTopProps {
   onLoginOpened: Function;
@@ -24,7 +25,7 @@ const MenuTop = ({ onLoginOpened, userData, onUserLogout }: MenuTopProps) => {
           {!userData ? (
             <ul>
               <li>
-                <Link href="#">
+                <Link href="/login">
                   <a onClick={e => onLoginOpened(e)}>Logowanie</a>
                 </Link>
               </li>
@@ -35,7 +36,7 @@ const MenuTop = ({ onLoginOpened, userData, onUserLogout }: MenuTopProps) => {
               </li>
             </ul>
           ) : (
-            <div onClick={() => onUserLogout()}>{userData.login}</div>
+            <MenuTopLogged onUserLogout={onUserLogout} userData={userData} />
           )}
         </div>
       </Wrapper>

@@ -43,3 +43,9 @@ export const animation = {
   slow: 350,
   subtle: 500,
 };
+
+export const other = {
+  shadow: {
+    default: '0px 0px 5px 1px rgba(0, 0, 0, 0.5)',
+  },
+};

@@ -126,6 +126,7 @@ class Page extends Component<PageProps> {
             padding: 0;
             font-size: ${dimensions.fontSize.regular}px;
             color: ${colors.text.default};
+            overflow-x: hidden;
           }
 
           h1,
@@ -136,6 +137,7 @@ class Page extends Component<PageProps> {
           h6 {
             font-family: ${fonts.header};
             font-weight: 700;
+            letter-spacing: 0.5px;
           }
 
           h1 {
@@ -148,6 +150,10 @@ class Page extends Component<PageProps> {
 
           h3 {
             font-size: 1.4em;
+          }
+
+          p {
+            line-height: 1.4;
           }
 
           button {

@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Config
-import Link from 'next/link';
 
 // Helpers
 import { colors, animation } from '../../styles/variables';
@@ -10,6 +9,7 @@ import { UserData } from '../../content/types/user';
 // Components
 import Wrapper from '../common/Wrapper';
 import MenuTopLogged from './MenuTopLogged';
+import Link from 'next/link';
 
 interface MenuTopProps {
   onLoginOpened: Function;

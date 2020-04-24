@@ -23,6 +23,7 @@
   "dependencies": {
     "@types/node": "^13.7.6",
     "@types/react": "^16.9.23",
+    "@zeit/next-css": "^1.0.1",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
@@ -35,6 +36,7 @@
     "path": "^0.12.7",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-responsive-carousel": "^3.1.51",
     "yup": "^0.28.1"
   },
   "devDependencies": {

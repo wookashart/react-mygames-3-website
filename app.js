@@ -13,6 +13,7 @@ const handle = app.getRequestHandler();
 const apiLogin = require('./backend/authentication/login');
 const apiMe = require('./backend/authentication/me');
 const apiLogout = require('./backend/authentication/logout');
+const apiHomepage = require('./backend/pages/homepage');
 
 app
   .prepare()
@@ -43,6 +44,7 @@ app
     server.post('/api/login', apiLogin);
     server.post('/api/me', apiMe);
     server.post('/api/logout', apiLogout);
+    server.post('/api/homepage', apiHomepage);
 
     server.get('*', (req, res) => {
       return handle(req, res);

@@ -5,12 +5,13 @@ import { dimensions } from '../../styles/variables';
 
 interface WrapperProps {
   children: React.ReactElement;
+  className?: string;
 }
 
-const Wrapper = ({ children }: WrapperProps) => {
+const Wrapper = ({ children, className }: WrapperProps) => {
   return (
     <>
-      <div>{children}</div>
+      <div className={className}>{children}</div>
       <style jsx>{`
         div {
           max-width: ${dimensions.wrapper}px;

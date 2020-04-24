@@ -1,3 +1,7 @@
 .next
 node_modules
 out
+
+public/images/img/articles/*
+public/images/img/games/*
+public/images/img/dlc/*

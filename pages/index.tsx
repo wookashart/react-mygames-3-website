@@ -33,7 +33,6 @@ class Index extends Component {
         } else {
           this.setState({ error: true, loading: false });
         }
-        console.log(json);
       });
   }
 

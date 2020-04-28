@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 
 // Config
-import Head from 'next/head';
 
 // Components
+import Head from 'next/head';
 import Page from '../src/components/layout/Page';
 import Wrapper from '../src/components/common/Wrapper';
 import Loader from '../src/components/common/Loader';
 import HomepageNewsCarousel from '../src/components/homepage/HomepageNewsCarousel';
+import HomepageLastRelease from '../src/components/homepage/HomepageLastRelease';
 
 class Index extends Component {
   state = {
@@ -47,7 +48,9 @@ class Index extends Component {
           ) : (
             <>
               <HomepageNewsCarousel slides={this.state.data.latestArticles} />
-              {/* <Wrapper></Wrapper> */}
+              <Wrapper>
+                <HomepageLastRelease data={this.state.data} />
+              </Wrapper>
             </>
           )}
           <style jsx>{``}</style>

@@ -9,6 +9,7 @@ import Wrapper from '../src/components/common/Wrapper';
 import Loader from '../src/components/common/Loader';
 import HomepageNewsCarousel from '../src/components/homepage/HomepageNewsCarousel';
 import HomepageLastRelease from '../src/components/homepage/HomepageLastRelease';
+import HomepageNewUsers from '../src/components/homepage/HomepageNewUsers';
 
 class Index extends Component {
   state = {
@@ -51,6 +52,7 @@ class Index extends Component {
               <Wrapper>
                 <HomepageLastRelease data={this.state.data} />
               </Wrapper>
+              <HomepageNewUsers data={this.state.data.latestUsers} />
             </>
           )}
           <style jsx>{``}</style>

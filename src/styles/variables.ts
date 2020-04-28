@@ -6,6 +6,7 @@ export const colors = {
   ui: {
     default: '#2285ea',
     dark: '#0061b4',
+    light: '#f1f1f1',
   },
   white: '#ffffff',
 };

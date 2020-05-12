@@ -18,7 +18,7 @@ class HomepageLastRelease extends Component<HomepageLastReleaseProps> {
     return this.props.data.latestReleasesGames.map(game => ({
       title: game.game_title,
       id: game.game_id,
-      cover: `/images/img/games/${game.game_cover}`,
+      cover: game.game_cover && game.game_cover !== '' ? `/images/img/games/${game.game_cover}` : '',
       date: game.game_release_date,
     }));
   };
@@ -27,7 +27,7 @@ class HomepageLastRelease extends Component<HomepageLastReleaseProps> {
     return this.props.data.latestReleasesDlc.map(game => ({
       title: `${game.game_title} - ${game.dlc_name}`,
       id: game.dlc_id,
-      cover: `/images/img/dlc/${game.dlc_cover}`,
+      cover: game.dlc_cover && game.dlc_cover !== '' ? `/images/img/dlc/${game.dlc_cover}` : '',
       date: game.dlc_date,
     }));
   };

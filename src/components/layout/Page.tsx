@@ -12,6 +12,9 @@ import Menu from './Menu';
 import Footer from './Footer';
 import Login from '../login/Login';
 
+// Exports
+export const UserDataContext = React.createContext(null);
+
 interface PageProps {
   children: React.ReactElement;
 }
@@ -109,11 +112,11 @@ class Page extends Component<PageProps> {
           onUserLogin={this.onUserLogin}
           error={this.state.error}
         />
-        <>
+        <UserDataContext.Provider value={this.state.userData}>
           <Menu onLoginOpened={this.onLoginOpened} userData={this.state.userData} onUserLogout={this.onUserLogout} />
           {children}
           <Footer />
-        </>
+        </UserDataContext.Provider>
         <style jsx global>{`
           * {
             box-sizing: border-box;
@@ -142,6 +145,8 @@ class Page extends Component<PageProps> {
 
           h1 {
             font-size: 2.4em;
+            color: ${colors.ui.dark};
+            margin: 10px 0;
           }
 
           h2 {
@@ -158,6 +163,12 @@ class Page extends Component<PageProps> {
 
           button {
             outline: none;
+          }
+
+          .page-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
           }
         `}</style>
       </>

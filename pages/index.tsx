@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-// Config
-
 // Components
 import Head from 'next/head';
 import Page from '../src/components/layout/Page';
@@ -48,9 +46,7 @@ class Index extends Component {
           ) : (
             <>
               <HomepageNewsCarousel slides={this.state.data.latestArticles} />
-              <Wrapper>
-                <HomepageLastRelease data={this.state.data} />
-              </Wrapper>
+              <HomepageLastRelease data={this.state.data} />
               <HomepageNewUsers data={this.state.data.latestUsers} />
             </>
           )}

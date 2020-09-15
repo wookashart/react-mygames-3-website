@@ -16,7 +16,7 @@ module.exports = (req, res) => {
       FROM games
       WHERE game_release_date <= CURDATE()
       ORDER BY game_release_date DESC
-      LIMIT 5`)
+      LIMIT 10`)
     .then(({ err, rows }) => {
       response.latestReleasesGames = rows;
 
@@ -25,7 +25,7 @@ module.exports = (req, res) => {
         WHERE games.game_id = games_dlc.dlc_id_game
         AND games_dlc.dlc_date <= CURDATE()
         ORDER BY games_dlc.dlc_date DESC
-        LIMIT 5`);
+        LIMIT 10`);
     })
     .then(({ err, rows }) => {
       response.latestReleasesDlc = rows;

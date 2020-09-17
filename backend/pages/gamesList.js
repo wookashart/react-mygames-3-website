@@ -4,6 +4,7 @@ const connection = require('../database/connection');
 
 module.exports = (req, res) => {
   const listSize = req.body.listSize;
+  const page = req.body.page;
   const response = {};
 
   const queryPromise = queryString =>
@@ -21,10 +22,26 @@ module.exports = (req, res) => {
       GROUP BY games.game_id
       ORDER BY game_title ASC
       LIMIT ${listSize}
+      OFFSET ${listSize * (page - 1)}
     `,
-  ).then(({ err, rows }) => {
-    response.games = rows;
+  )
+    .then(({ err, rows }) => {
+      response.games = rows;
 
-    res.json(response);
-  });
+      return queryPromise('SELECT COUNT(*) AS totalCount FROM games');
+    })
+    .then(({ err, rows }) => {
+      response.totalCount = rows[0].totalCount;
+
+      return queryPromise(
+        `
+        SELECT COUNT(*) AS filteredCount FROM games
+        `,
+      );
+    })
+    .then(({ err, rows }) => {
+      response.filteredCount = rows[0].filteredCount;
+
+      res.json(response);
+    });
 };

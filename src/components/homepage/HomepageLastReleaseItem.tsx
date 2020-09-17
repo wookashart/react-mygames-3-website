@@ -1,17 +1,14 @@
 import React from 'react';
+import dateFormat from 'dateformat';
 
 // Helpers
-import { colors, animation, dimensions, breakpoints } from '../../styles/variables';
+import { colors, animation, dimensions } from '../../styles/variables';
 
 // Components
 import Link from 'next/link';
 import CarouselDefault from '../common/CarouselDefault';
 
-// Config
-import dateFormat from 'dateformat';
-
 interface HomepageLastReleaseProps {
-  title: string;
   url: string;
   list: LastReleaseList[];
 }
@@ -23,7 +20,7 @@ interface LastReleaseList {
   date: string;
 }
 
-const HomepageLastRelease = ({ title, url, list }: HomepageLastReleaseProps) => (
+const HomepageLastRelease = ({ url, list }: HomepageLastReleaseProps) => (
   <>
     <div className="last-release-wrapper">
       <div className="last-release-content">

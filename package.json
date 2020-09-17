@@ -21,6 +21,10 @@
   },
   "homepage": "https://github.com/wookashart/react-mygames-3-website#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-brands-svg-icons": "^5.14.0",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "@types/node": "^13.7.6",
     "@types/react": "^16.9.23",
     "@zeit/next-css": "^1.0.1",
@@ -38,6 +42,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-multi-carousel": "^2.5.5",
+    "react-paginate": "^6.5.0",
     "react-responsive-carousel": "^3.1.51",
     "react-tabs": "^3.1.1",
     "yup": "^0.28.1"

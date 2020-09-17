@@ -2,6 +2,7 @@ export const colors = {
   text: {
     default: '#000000',
     error: '#ff124c',
+    gray: '#888888',
   },
   ui: {
     default: '#2285ea',
@@ -9,6 +10,7 @@ export const colors = {
     light: '#f1f1f1',
   },
   white: '#ffffff',
+  star: '#ffc200',
 };
 
 export const fonts = {
@@ -26,6 +28,7 @@ export const breakpoints = {
 
 export const dimensions = {
   fontSize: {
+    xxl: 24,
     large: 18,
     regular: 16,
     small: 14,

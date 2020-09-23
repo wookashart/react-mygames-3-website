@@ -23,7 +23,7 @@ const Button = ({ title, variant, onButtonClick, type }: ButtonProps) => {
           display: block;
           margin: 0 10px;
           padding: 10px 30px;
-          border-radius: 7px;
+          border-radius: 3px;
           cursor: pointer;
           color: ${colors.white};
           font-family: ${fonts.header};
@@ -44,6 +44,15 @@ const Button = ({ title, variant, onButtonClick, type }: ButtonProps) => {
         .variant-cancel:hover {
           background-color: ${colors.text.error};
           color: ${colors.white};
+        }
+
+        .variant-negative {
+          background-color: ${colors.ui.dark};
+          border: 1px solid ${colors.ui.dark};
+        }
+
+        .variant-negative:hover {
+          border: 1px solid ${colors.white};
         }
       `}</style>
     </>

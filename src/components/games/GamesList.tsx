@@ -174,6 +174,29 @@ const GamesList = ({ games, url }: GamesListProps) => {
         @media screen and (min-width: ${breakpoints.md}px) {
           a {
             flex-flow: row;
+            position: relative;
+            background-color: ${colors.white};
+            transition: ${animation.fast}ms background-color ease-out;
+          }
+
+          a::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: ${colors.ui.default};
+            z-index: -1;
+            transition: ${animation.fast}ms transform ease-out;
+          }
+
+          a:hover {
+            background-color: ${colors.ui.light};
+          }
+
+          a:hover::after {
+            transform: translate(3px, 3px);
           }
 
           .game-image {

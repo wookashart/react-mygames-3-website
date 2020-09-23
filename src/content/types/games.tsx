@@ -25,3 +25,8 @@ export interface Games {
   countRatio: number;
   sumRatio: number;
 }
+
+export interface GamePlatformsData {
+  id: string;
+  name: string;
+}

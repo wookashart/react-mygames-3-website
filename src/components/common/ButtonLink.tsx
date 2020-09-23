@@ -24,7 +24,7 @@ const ButtonLink = ({ title, url }: ButtonLinkProps) => {
           display: block;
           margin: 0 10px;
           padding: 10px 30px;
-          border-radius: 7px;
+          border-radius: 3px;
           cursor: pointer;
           color: ${colors.white};
           font-family: ${fonts.header};

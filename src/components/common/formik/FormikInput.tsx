@@ -4,7 +4,7 @@ import React from 'react';
 import { Field, FieldProps } from 'formik';
 
 // Helpers
-import { colors, dimensions } from '../../styles/variables';
+import { colors, dimensions } from '../../../styles/variables';
 
 interface FormikInputProps {
   label?: string;

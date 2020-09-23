@@ -6,7 +6,7 @@ import { UserData } from '../../content/types/user';
 import { GameFiltersData } from '../../content/types/filters';
 
 // Helpers
-import { breakpoints } from '../../styles/variables';
+import { breakpoints, colors, dimensions } from '../../styles/variables';
 
 // Components
 import Head from 'next/head';
@@ -18,8 +18,6 @@ import ButtonLink from '../common/ButtonLink';
 import Pagination from '../common/Pagination';
 import GamesList from '../games/GamesList';
 import GamesFilters from '../games/GamesFilters';
-
-import Link from 'next/link';
 
 interface GamesPageProps {
   pageId: string;
@@ -35,29 +33,31 @@ class GamesPage extends Component<GamesPageProps> {
     listSize: 25,
   };
 
-  onGamesLoad = () => {
+  onGamesLoad = (selectedPage?: number) => {
     const data = {
       listSize: this.state.listSize,
-      page: this.props.pageId,
+      page: selectedPage ? selectedPage : this.props.pageId,
       filters: this.props.filters,
     };
 
-    fetch('/api/gamesList', {
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(data),
-      method: 'POST',
-      credentials: 'include',
-    })
-      .then(response => response.json())
-      .then(json => {
-        if (json && !json.error) {
-          this.setState({ data: json, loading: false });
-        } else {
-          this.setState({ error: true, loading: false });
-        }
-      });
+    this.setState({ loading: true }, () => {
+      fetch('/api/gamesList', {
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        method: 'POST',
+        credentials: 'include',
+      })
+        .then(response => response.json())
+        .then(json => {
+          if (json && !json.error) {
+            this.setState({ data: json, loading: false });
+          } else {
+            this.setState({ error: true, loading: false });
+          }
+        });
+    });
   };
 
   gamesList = list => {
@@ -90,13 +90,31 @@ class GamesPage extends Component<GamesPageProps> {
             <UserDataContext.Consumer>
               {(userData: UserData) => (
                 <>
-                  <Breadcrumbs pages={[{ title: 'Gry', url: '/games/1' }]} />
+                  <Breadcrumbs pages={[{ title: 'Gry', url: '/games' }]} />
                   {this.state.loading ? (
                     <Loader />
                   ) : (
                     <>
                       <div className="page-title">
-                        <h1>Gry</h1>
+                        <div className="page-title-informations">
+                          <p>
+                            Wszystkich pozycji: <span className="highlighted-info">{this.state.data.totalCount}</span>
+                          </p>
+                          {Object.keys(this.props.filters).length > 0 ? (
+                            <p>
+                              Znaleziono: <span className="highlighted-info">{this.state.data.filteredCount}</span>
+                              {this.props.filters.title && this.props.filters.title !== '' ? (
+                                <span>
+                                  {' '}
+                                  dla szukanego hasła:{' '}
+                                  <span className="highlighted-info">{this.props.filters.title}</span>
+                                </span>
+                              ) : (
+                                <span> dla wybranych filtrów</span>
+                              )}
+                            </p>
+                          ) : null}
+                        </div>
                         {userData && userData.type === 'A' && <ButtonLink title="Dodaj grę" url="/games/add" />}
                       </div>
                       <div className="games-content">
@@ -107,7 +125,12 @@ class GamesPage extends Component<GamesPageProps> {
                           />
                         </div>
                         <div>
-                          <GamesFilters />
+                          <GamesFilters
+                            producers={this.state.data.producers}
+                            publishers={this.state.data.publishers}
+                            platforms={this.state.data.platforms}
+                            handleRefreshData={this.onGamesLoad}
+                          />
                         </div>
                       </div>
                       <Pagination
@@ -115,6 +138,7 @@ class GamesPage extends Component<GamesPageProps> {
                         url="/games"
                         maxPages={Math.ceil(this.state.data.filteredCount / this.state.listSize)}
                         urlParams={this.props.urlParams}
+                        handleRefreshData={this.onGamesLoad}
                       />
                     </>
                   )}
@@ -126,6 +150,20 @@ class GamesPage extends Component<GamesPageProps> {
             .games-content {
               display: flex;
               flex-flow: column-reverse;
+            }
+
+            .highlighted-info {
+              color: ${colors.ui.dark};
+              font-weight: 600;
+              font-size: ${dimensions.fontSize.large}px;
+            }
+
+            .page-title-informations {
+              padding: 20px 0;
+            }
+
+            .page-title-informations p {
+              margin: 0;
             }
 
             @media screen and (min-width: ${breakpoints.lg}px) {

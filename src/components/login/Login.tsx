@@ -10,7 +10,7 @@ import { colors } from '../../styles/variables';
 
 // Components
 import Modal from '../common/Modal';
-import FormikInput from '../common/FormikInput';
+import FormikInput from '../common/formik/FormikInput';
 
 interface MyFormValues {
   login: string;

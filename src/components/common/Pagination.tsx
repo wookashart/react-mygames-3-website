@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-
-// Config
 import Router from 'next/router';
 
 // Helpers
@@ -14,12 +12,14 @@ interface PaginationProps {
   url: string;
   maxPages: number;
   urlParams?: string;
+  handleRefreshData: Function;
 }
 
 class Pagination extends Component<PaginationProps> {
   handlePageClick = data => {
     if (data.selected + 1 !== this.props.page) {
       Router.replace(`${this.props.url}/${data.selected + 1}${this.props.urlParams ? this.props.urlParams : ''}`);
+      this.props.handleRefreshData(data.selected + 1);
     }
   };
 
@@ -46,7 +46,7 @@ class Pagination extends Component<PaginationProps> {
         </div>
         <style jsx>{`
           div {
-            border-top: 1px solid ${colors.text.default};
+            border-top: 1px solid ${colors.ui.light};
             margin: 30px 0;
           }
         `}</style>

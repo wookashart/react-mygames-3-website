@@ -3,19 +3,17 @@ import React, { Component } from 'react';
 // Components
 import Head from 'next/head';
 import Page from '../src/components/layout/Page';
-import Wrapper from '../src/components/common/Wrapper';
+import Error404Page from '../src/components/404/404Page';
 
-class Index extends Component {
+class Error extends Component {
   render() {
     return (
       <Page>
         <>
           <Head>
-            <title>Nazwa strony | MyGames</title>
+            <title>Błąd 404 | MyGames</title>
           </Head>
-          <Wrapper>
-            <div>Treść</div>
-          </Wrapper>
+          <Error404Page />
           <style jsx>{``}</style>
         </>
       </Page>
@@ -23,4 +21,4 @@ class Index extends Component {
   }
 }
 
-export default Index;
+export default Error;

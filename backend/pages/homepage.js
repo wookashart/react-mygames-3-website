@@ -1,16 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-var-requires */
-const connection = require('../database/connection');
+const { queryPromise } = require('../utils');
 
 module.exports = (req, res) => {
   const response = {};
-
-  const queryPromise = queryString =>
-    new Promise(resolve => {
-      connection.query(queryString, (err, rows) => {
-        resolve({ err, rows });
-      });
-    });
 
   queryPromise(`SELECT game_id, game_title, game_release_date, game_cover
       FROM games

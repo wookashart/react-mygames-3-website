@@ -1,15 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-var-requires */
-const connection = require('../database/connection');
+const { queryPromise } = require('../utils');
 
 module.exports = (req, res) => {
-  const queryPromise = queryString =>
-    new Promise(resolve => {
-      connection.query(queryString, (err, rows) => {
-        resolve({ err, rows });
-      });
-    });
-
   if (req.session && req.session.user) {
     queryPromise(`SELECT * FROM users WHERE user_id="${req.session.user.id}"`).then(({ err, rows }) => {
       if (rows.length) {

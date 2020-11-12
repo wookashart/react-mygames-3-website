@@ -1,18 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const connection = require('../database/connection');
+const { queryPromise } = require('../utils');
 const passwordHash = require('password-hash');
 
 module.exports = (req, res) => {
   const userLogin = req.body.login;
   const userPassword = req.body.password;
   let userData;
-
-  const queryPromise = queryString =>
-    new Promise(resolve => {
-      connection.query(queryString, (err, rows) => {
-        resolve({ err, rows });
-      });
-    });
 
   queryPromise('SELECT * FROM users').then(({ err, rows }) => {
     rows.map(user => {

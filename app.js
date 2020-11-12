@@ -15,6 +15,7 @@ const apiMe = require('./backend/authentication/me');
 const apiLogout = require('./backend/authentication/logout');
 const apiHomepage = require('./backend/pages/homepage');
 const apiGamesList = require('./backend/pages/gamesList');
+const apiAdminUsers = require('./backend/pages/adminUsers');
 
 app
   .prepare()
@@ -47,6 +48,7 @@ app
     server.post('/api/logout', apiLogout);
     server.post('/api/homepage', apiHomepage);
     server.post('/api/gamesList', apiGamesList);
+    server.post('/api/adminUsers', apiAdminUsers);
 
     server.get('*', (req, res) => {
       return handle(req, res);

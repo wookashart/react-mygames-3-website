@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-var-requires */
-const connection = require('../database/connection');
+const { queryPromise } = require('../utils');
 
 module.exports = (req, res) => {
   const listSize = req.body.listSize;
@@ -20,13 +20,6 @@ module.exports = (req, res) => {
     filters.publisher && filters.publisher !== '' ? `games.game_publisher = "${filters.publisher}"` : '',
   ];
   const cleanFiltersGrouped = filtersGrouped.filter(el => el !== '');
-
-  const queryPromise = queryString =>
-    new Promise(resolve => {
-      connection.query(queryString, (err, rows) => {
-        resolve({ err, rows });
-      });
-    });
 
   queryPromise(
     `

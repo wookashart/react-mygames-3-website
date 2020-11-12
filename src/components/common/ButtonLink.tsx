@@ -9,13 +9,14 @@ import Link from 'next/link';
 interface ButtonLinkProps {
   title: string;
   url: string;
+  variant?: string;
 }
 
-const ButtonLink = ({ title, url }: ButtonLinkProps) => {
+const ButtonLink = ({ title, url, variant }: ButtonLinkProps) => {
   return (
     <>
       <Link href={url}>
-        <a>{title}</a>
+        <a className={variant ? `variant-${variant}` : ''}>{title}</a>
       </Link>
       <style jsx>{`
         a {
@@ -34,6 +35,10 @@ const ButtonLink = ({ title, url }: ButtonLinkProps) => {
         }
 
         a:hover {
+          background-color: ${colors.ui.dark};
+        }
+
+        .variant-active {
           background-color: ${colors.ui.dark};
         }
       `}</style>
